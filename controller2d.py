@@ -116,12 +116,14 @@ class Controller2D(object):
         else:
             crosstrack_error = - abs(crosstrack_error)
 
-        yaw_diff_crosstrack = np.arctan(k_e * crosstrack_error / (k_v + v))
+        #yaw_diff_crosstrack = np.arctan(k_e * crosstrack_error / (k_v + v))
 
         # print(crosstrack_error, yaw_diff, yaw_diff_crosstrack)
 
+        #Pure Pursuit method
+        steer_expect = np.arctan2(2.0 * 2.9 * np.sin(yaw_diff), 20)
         # 3. control low
-        steer_expect = yaw_diff + yaw_diff_crosstrack
+        #steer_expect = yaw_diff + yaw_diff_crosstrack
         if steer_expect > np.pi:
             steer_expect -= 2 * np.pi
         if steer_expect < - np.pi:

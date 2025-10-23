@@ -83,7 +83,7 @@ def main():
     if non_linear_model:
         state = NonLinearBicycleModel(x=-180.3353216786993, y=79.53986286885691, yaw=np.radians(20.0))
     else:
-        state = LinearBicycleModel(x=-180.3353216786993, y=79.53986286885691, yaw=np.radians(20.0))
+        state = LinearBicycleModel(x=-180.3353216786993, y=79.53986286885691, yaw=np.radians(-90.0))
 
     start_x, start_y, start_yaw = state.x, state.y, state.yaw
     #state.update(throttle=0, delta=0)
