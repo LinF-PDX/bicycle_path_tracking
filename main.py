@@ -17,11 +17,11 @@ if non_linear_model:
     trajectory_path = "trajectory_non_linear.png"
     speed_path = "speed_non_linear.png"
 else:
-    trajectory_path = "trajectory_linear.png"
-    speed_path = "speed_linear.png"
+    trajectory_path = "trajectory_linear_const_v.png"
+    speed_path = "speed_linear_const_v.png"
 
 # show the animation plot during the simulation, default is False.
-show_animation = False
+show_animation = True
 
 
 def main():
@@ -86,7 +86,8 @@ def main():
         state = LinearBicycleModel(x=-180.3353216786993, y=79.53986286885691, yaw=np.radians(20.0))
 
     start_x, start_y, start_yaw = state.x, state.y, state.yaw
-    state.update(throttle=0, delta=0)
+    #state.update(throttle=0, delta=0)
+    state.update(v=0, delta=0)
     x_history = [start_x]
     y_history = [start_y]
     yaw_history = [start_yaw]
@@ -190,7 +191,9 @@ def main():
         speed_error.append(controller._e)
 
         # Output controller command to the vehicle and update the states
-        state.update(throttle=controller.throttle, delta=controller.steer)
+        #state.update(throttle=controller.throttle, delta=controller.steer)
+        state.update(v=20, delta=controller.steer)
+
 
         # Find if reached the end of waypoint. If the car is within DIST_THRESHOLD_TO_LAST_WAYPOINT to the last waypoint,
         # then simulation will be terminated.
@@ -262,3 +265,4 @@ def plot_debug(speed_error):
 
 if __name__ == '__main__':
     main()
+

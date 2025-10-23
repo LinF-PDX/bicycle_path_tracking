@@ -59,7 +59,7 @@ class LinearBicycleModel(object):
         self.yaw = yaw
         self.v = v
 
-    def update(self, throttle, delta):
+    def update(self, v, delta):
         """
         Update the state of the vehicle.
         Stanley Control uses bicycle model.
@@ -72,7 +72,8 @@ class LinearBicycleModel(object):
         self.y += self.v * np.sin(self.yaw) * dt
         self.yaw += self.v / L * np.tan(delta) * dt
         self.yaw = normalize_angle(self.yaw)
-        self.v += throttle * dt
+        #self.v += throttle * dt
+        self.v = v
 
 
 def normalize_angle(angle):
